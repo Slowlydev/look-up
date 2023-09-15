@@ -12,9 +12,7 @@ import com.slowly.lookup.services.WeatherService;
 
 import org.json.JSONException;
 
-import java.net.URISyntaxException;
-
-public class WeatherLocation extends AppCompatActivity {
+public class WeatherLocationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
