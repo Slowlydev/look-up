@@ -34,8 +34,10 @@ public class WeatherLocationActivity extends AppCompatActivity {
                     System.out.println(weather);
 
                     TextView temperature = findViewById(R.id.temperature);
+                    temperature.setText(Double.toString(weather.getCurrent().getTemp_c()) +"°");
 
-                    temperature.setText(Double.toString(weather.getCurrent().getTemp_c()));
+                    TextView description = findViewById(R.id.description);
+                    description.setText(weather.getCurrent().getCondition().getText());
 
                 } catch (JSONException e) {
                     System.out.println(e);
