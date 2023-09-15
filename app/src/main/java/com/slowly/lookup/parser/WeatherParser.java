@@ -19,7 +19,7 @@ public class WeatherParser {
         weather.setCurrent(CurrentParser.parseCurrentFromJSONObject(currentObject));
 
         JSONObject forecastObject = jsonObject.getJSONObject("forecast");
-//        weather.setForecast();
+        weather.setForecast(ForecastParser.parseForecastFromJSONObject(forecastObject));
 
         return weather;
     }

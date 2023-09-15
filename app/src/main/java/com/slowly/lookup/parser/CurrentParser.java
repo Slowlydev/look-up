@@ -31,7 +31,7 @@ public class CurrentParser {
         current.setGust_mph(jsonObject.getDouble("gust_mph"));
         current.setGust_kph(jsonObject.getDouble("gust_kph"));
 
-        JSONObject conditionObject = jsonObject.getJSONObject("current");
+        JSONObject conditionObject = jsonObject.getJSONObject("condition");
         current.setCondition(ConditionParser.parseConditionFromJSONObject(conditionObject));
 
         return current;

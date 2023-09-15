@@ -3,9 +3,9 @@ package com.slowly.lookup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void addLocations() {
         ListView locations = findViewById(R.id.locations);
-        ArrayAdapter<>
+        // ArrayAdapter<>
     }
 }
