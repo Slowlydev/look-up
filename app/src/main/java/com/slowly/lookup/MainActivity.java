@@ -3,12 +3,16 @@ package com.slowly.lookup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.slowly.lookup.model.Location;
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
 import com.slowly.lookup.services.Service;
@@ -49,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         if (savedLocations == null || savedLocations.isEmpty()) {
             emptyState.setText("no locations saved :(");
         }
+
+        AdapterView.OnItemClickListener onItemClick = (parent, view, position, id) -> {
+            Intent intent = new Intent(getApplicationContext(), WeatherLocationActivity.class);
+            String selected = (String)parent.getItemAtPosition(position);
+            intent.putExtra("locationName", selected);
+            startActivity(intent);
+        };
+        locations.setOnItemClickListener(onItemClick);
 
         if (savedLocations != null) {
             for (String location : savedLocations) {
