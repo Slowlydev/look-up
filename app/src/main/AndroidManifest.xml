@@ -18,10 +18,10 @@
             android:name=".DetailedWeatherLocationActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".WeatherLocationActivity"
             android:exported="false" />
         <activity
-            android:name=".WeatherLocationActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
