@@ -18,6 +18,7 @@ import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
 import com.slowly.lookup.services.NetworkUtils;
 import com.slowly.lookup.services.Service;
+import com.slowly.lookup.services.ServiceCallback;
 import com.slowly.lookup.services.WeatherService;
 
 import org.json.JSONException;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedLocations != null) {
             for (String location : savedLocations) {
-                Service service = new Service() {
+                ServiceCallback serviceCallback = new ServiceCallback() {
                     @Override
                     public void onRequest(String response) {
                         try {
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-                new WeatherService().getWeather(getApplicationContext(), location, service);
+                new WeatherService().getWeather(getApplicationContext(), location, serviceCallback);
             }
         }
 

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
-import com.slowly.lookup.services.Service;
+import com.slowly.lookup.services.ServiceCallback;
 import com.slowly.lookup.services.WeatherService;
 
 import org.json.JSONException;
@@ -51,7 +51,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
     }
 
     private void loadWeather() {
-        Service service = new Service() {
+        ServiceCallback serviceCallback = new ServiceCallback() {
             @Override
             public void onRequest(String response) {
                 try {
@@ -134,7 +134,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
         };
 
         WeatherService weatherService = new WeatherService();
-        weatherService.getWeather(getApplicationContext(), locationName, service);
+        weatherService.getWeather(getApplicationContext(), locationName, serviceCallback);
     }
 
     private String formatTemp(Double temperature) {
