@@ -109,8 +109,8 @@ public class WeatherLocationActivity extends AppCompatActivity {
 
                     String iconUrlEight = weather.getForecast().getForecastday().get(0).getHour().get(8).getCondition().getIcon();
                     String iconUrlTen = weather.getForecast().getForecastday().get(0).getHour().get(10).getCondition().getIcon();
-                    String iconUrlTwo = weather.getForecast().getForecastday().get(0).getHour().get(2).getCondition().getIcon();
-                    String iconUrlFour = weather.getForecast().getForecastday().get(0).getHour().get(4).getCondition().getIcon();
+                    String iconUrlTwo = weather.getForecast().getForecastday().get(0).getHour().get(14).getCondition().getIcon();
+                    String iconUrlFour = weather.getForecast().getForecastday().get(0).getHour().get(16).getCondition().getIcon();
 
                     Picasso.get().load("https:" + iconUrlEight).into(localIconEight);
                     Picasso.get().load("https:" + iconUrlTen).into(localIconTen);
