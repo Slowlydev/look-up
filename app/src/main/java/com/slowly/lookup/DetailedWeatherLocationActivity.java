@@ -3,9 +3,13 @@ package com.slowly.lookup;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.squareup.picasso.Picasso;
+
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.slowly.lookup.model.Weather;
@@ -16,6 +20,8 @@ import com.slowly.lookup.services.WeatherService;
 import org.json.JSONException;
 
 import java.util.Locale;
+
+import javax.security.auth.callback.Callback;
 
 public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
@@ -74,6 +80,36 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
                     temperature.setText(formatTemp(weather.getCurrent().getTemp_c()));
                     windDirection.setText(weather.getCurrent().getWind_dir());
                     windSpeed.setText(String.format(Locale.getDefault(),"%f", weather.getCurrent().getWind_kph()));
+
+                    //Hourly Image
+                    ImageView weatherConditionEight = findViewById(R.id.image_eight_detail);
+                    ImageView weatherConditionNine = findViewById(R.id.image_nine_detail);
+                    ImageView weatherConditionTen = findViewById(R.id.image_ten_detail);
+                    ImageView weatherConditionEleven = findViewById(R.id.image_eleven_detail);
+                    ImageView weatherConditionOne = findViewById(R.id.image_one_detail);
+                    ImageView weatherConditionTwo = findViewById(R.id.image_two_detail);
+                    ImageView weatherConditionThree = findViewById(R.id.image_three_detail);
+                    ImageView weatherConditionFour = findViewById(R.id.image_four_detail);
+
+                    String iconUrlEight = weather.getForecast().getForecastday().get(0).getHour().get(8).getCondition().getIcon();
+                    String iconUrlNine = weather.getForecast().getForecastday().get(0).getHour().get(9).getCondition().getIcon();
+                    String iconUrlTen = weather.getForecast().getForecastday().get(0).getHour().get(10).getCondition().getIcon();
+                    String iconUrlEleven = weather.getForecast().getForecastday().get(0).getHour().get(11).getCondition().getIcon();
+                    String iconUrlOne = weather.getForecast().getForecastday().get(0).getHour().get(13).getCondition().getIcon();
+                    String iconUrlTwo = weather.getForecast().getForecastday().get(0).getHour().get(14).getCondition().getIcon();
+                    String iconUrlThree = weather.getForecast().getForecastday().get(0).getHour().get(15).getCondition().getIcon();
+                    String iconUrlFour = weather.getForecast().getForecastday().get(0).getHour().get(16).getCondition().getIcon();
+
+
+                    Picasso.get().load("https:" + iconUrlEight).into(weatherConditionEight);
+                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionNine);
+                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionTen);
+                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionEleven);
+                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionOne);
+                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionTwo);
+                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionThree);
+                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionFour);
+
 
                     //Hourly Time
                     TextView localTimeEight = findViewById(R.id.time_eight_detail);
