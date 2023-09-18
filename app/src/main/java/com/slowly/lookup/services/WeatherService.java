@@ -24,7 +24,24 @@ public class WeatherService {
                 .appendQueryParameter("aqi", "no")
                 .build().toString();
 
-        System.out.println(url);
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                url,
+                serviceCallback::onRequest,
+                error -> serviceCallback.onError()
+        );
+
+        queue.add(request);
+    }
+
+    public void getLocation(Context context, String query, ServiceCallback  serviceCallback) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        String url = Uri.parse(baseUrl + "search.json")
+                .buildUpon()
+                .appendQueryParameter("q", query)
+                .appendQueryParameter("key", key)
+                .build().toString();
 
         StringRequest request = new StringRequest(
                 Request.Method.GET,

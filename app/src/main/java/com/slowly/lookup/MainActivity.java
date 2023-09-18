@@ -1,15 +1,21 @@
 package com.slowly.lookup;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.slowly.lookup.adapter.ListAdapter;
@@ -58,13 +64,12 @@ public class MainActivity extends AppCompatActivity {
             emptyState.setVisibility(View.GONE);
         }
 
-        AdapterView.OnItemClickListener onItemClick = (parent, view, position, id) -> {
+        locations.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getApplicationContext(), WeatherLocationActivity.class);
             LocationItem selected = (LocationItem)parent.getItemAtPosition(position);
             intent.putExtra("locationName", selected.getName());
             startActivity(intent);
-        };
-        locations.setOnItemClickListener(onItemClick);
+        });
 
         if (savedLocations != null) {
             for (String location : savedLocations) {
@@ -103,5 +108,17 @@ public class MainActivity extends AppCompatActivity {
         } else {
             errorState.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
     }
 }
