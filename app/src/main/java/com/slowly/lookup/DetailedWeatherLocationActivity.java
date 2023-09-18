@@ -103,12 +103,12 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
                     Picasso.get().load("https:" + iconUrlEight).into(weatherConditionEight);
                     Picasso.get().load("https:" + iconUrlNine).into(weatherConditionNine);
-                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionTen);
-                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionEleven);
-                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionOne);
-                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionTwo);
-                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionThree);
-                    Picasso.get().load("https:" + iconUrlNine).into(weatherConditionFour);
+                    Picasso.get().load("https:" + iconUrlTen).into(weatherConditionTen);
+                    Picasso.get().load("https:" + iconUrlEleven).into(weatherConditionEleven);
+                    Picasso.get().load("https:" + iconUrlOne).into(weatherConditionOne);
+                    Picasso.get().load("https:" + iconUrlTwo).into(weatherConditionTwo);
+                    Picasso.get().load("https:" + iconUrlThree).into(weatherConditionThree);
+                    Picasso.get().load("https:" + iconUrlFour).into(weatherConditionFour);
 
 
                     //Hourly Time

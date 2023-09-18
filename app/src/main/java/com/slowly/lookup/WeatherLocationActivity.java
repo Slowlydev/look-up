@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
 import com.slowly.lookup.services.ServiceCallback;
 import com.slowly.lookup.services.WeatherService;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 
@@ -100,7 +102,20 @@ public class WeatherLocationActivity extends AppCompatActivity {
                     localTempTwo.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(14).getTemp_c()));
                     localTempFour.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(16).getTemp_c()));
 
+                    ImageView localIconEight = findViewById(R.id.wheater_icon_eight);
+                    ImageView localIconTen = findViewById(R.id.wheater_icon_ten);
+                    ImageView localIconTwo = findViewById(R.id.wheater_icon_two);
+                    ImageView localIconFour = findViewById(R.id.wheater_icon_four);
 
+                    String iconUrlEight = weather.getForecast().getForecastday().get(0).getHour().get(8).getCondition().getIcon();
+                    String iconUrlTen = weather.getForecast().getForecastday().get(0).getHour().get(10).getCondition().getIcon();
+                    String iconUrlTwo = weather.getForecast().getForecastday().get(0).getHour().get(2).getCondition().getIcon();
+                    String iconUrlFour = weather.getForecast().getForecastday().get(0).getHour().get(4).getCondition().getIcon();
+
+                    Picasso.get().load("https:" + iconUrlEight).into(localIconEight);
+                    Picasso.get().load("https:" + iconUrlTen).into(localIconTen);
+                    Picasso.get().load("https:" + iconUrlTwo).into(localIconTwo);
+                    Picasso.get().load("https:" + iconUrlFour).into(localIconFour);
                 } catch (JSONException e) {
                     // TODO add handling for failed parsing
                 }
