@@ -1,8 +1,11 @@
 package com.slowly.lookup;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.slowly.lookup.model.Weather;
@@ -12,14 +15,39 @@ import com.slowly.lookup.services.WeatherService;
 
 import org.json.JSONException;
 
+import java.util.Locale;
+
 public class DetailedWeatherLocationActivity extends AppCompatActivity {
+
+    private String locationName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_weather_loaction);
 
+        Intent intent = getIntent();
+        locationName = intent.getStringExtra("locationName");
+        setTitle(locationName);
+
         loadWeather();
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemId = item.getItemId();
+
+        if (itemId == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadWeather() {
@@ -43,9 +71,9 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
                     locationName.setText(weather.getLocation().getName());
                     localTime.setText(time[1]);
-                    temperature.setText(Double.toString(weather.getCurrent().getTemp_c()));
+                    temperature.setText(formatTemp(weather.getCurrent().getTemp_c()));
                     windDirection.setText(weather.getCurrent().getWind_dir());
-                    windSpeed.setText(Double.toString(weather.getCurrent().getWind_kph()));
+                    windSpeed.setText(String.format(Locale.getDefault(),"%f", weather.getCurrent().getWind_kph()));
 
                     //Hourly Time
                     TextView localTimeEight = findViewById(R.id.time_eight_detail);
@@ -85,17 +113,17 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
                     TextView localTemperatureThree = findViewById(R.id.temperature_three_detail);
                     TextView localTemperatureFour = findViewById(R.id.temperature_four_detail);
 
-                    localTemperatureEight.setText(Double.toString(weather.getForecast().getForecastday().get(0).getHour().get(8).getTemp_c()));
-                    localTemperatureNine.setText(Double.toString(weather.getForecast().getForecastday().get(0).getHour().get(9).getTemp_c()));
-                    localTemperatureTen.setText(Double.toString(weather.getForecast().getForecastday().get(0).getHour().get(10).getTemp_c()));
-                    localTemperatureEleven.setText(Double.toString(weather.getForecast().getForecastday().get(0).getHour().get(11).getTemp_c()));
-                    localTemperatureOne.setText(Double.toString(weather.getForecast().getForecastday().get(0).getHour().get(13).getTemp_c()));
-                    localTemperatureTwo.setText(Double.toString(weather.getForecast().getForecastday().get(0).getHour().get(14).getTemp_c()));
-                    localTemperatureThree.setText(Double.toString(weather.getForecast().getForecastday().get(0).getHour().get(15).getTemp_c()));
-                    localTemperatureFour.setText(Double.toString(weather.getForecast().getForecastday().get(0).getHour().get(16).getTemp_c()));
+                    localTemperatureEight.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(8).getTemp_c()));
+                    localTemperatureNine.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(9).getTemp_c()));
+                    localTemperatureTen.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(10).getTemp_c()));
+                    localTemperatureEleven.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(11).getTemp_c()));
+                    localTemperatureOne.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(13).getTemp_c()));
+                    localTemperatureTwo.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(14).getTemp_c()));
+                    localTemperatureThree.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(15).getTemp_c()));
+                    localTemperatureFour.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(16).getTemp_c()));
 
                 } catch (JSONException e) {
-                    System.out.println(e);
+//                    System.out.println(e);
                 }
             }
 
@@ -106,6 +134,10 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
         };
 
         WeatherService weatherService = new WeatherService();
-        weatherService.getWeather(getApplicationContext(), "Muri bei Bern", service);
+        weatherService.getWeather(getApplicationContext(), locationName, service);
+    }
+
+    private String formatTemp(Double temperature) {
+        return String.format(Locale.getDefault(),"%.0fº", temperature);
     }
 }
