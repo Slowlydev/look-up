@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -15,6 +16,7 @@ import com.slowly.lookup.adapter.ListAdapter;
 import com.slowly.lookup.model.LocationItem;
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
+import com.slowly.lookup.services.NetworkUtils;
 import com.slowly.lookup.services.Service;
 import com.slowly.lookup.services.WeatherService;
 
@@ -28,7 +30,6 @@ import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView locations = findViewById(R.id.locations);
         TextView emptyState = findViewById(R.id.emptyState);
+        TextView errorState = findViewById(R.id.errorState);
         List<LocationItem> locationItems = new ArrayList<>();
 
         ArrayAdapter<LocationItem> locationsAdapter = new ListAdapter(this, R.layout.activity_main_list_item, locationItems);
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedLocations == null || savedLocations.isEmpty()) {
             emptyState.setText("no locations saved :(");
+        } else {
+            emptyState.setVisibility(View.GONE);
         }
 
         AdapterView.OnItemClickListener onItemClick = (parent, view, position, id) -> {
@@ -91,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
 
                 new WeatherService().getWeather(getApplicationContext(), location, service);
             }
+        }
+
+        if (!NetworkUtils.connected(this)) {
+            errorState.setText("no network connection :(");
+        } else {
+            errorState.setVisibility(View.GONE);
         }
     }
 }

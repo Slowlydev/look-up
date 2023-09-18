@@ -11,6 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="24dp"/>
 
+    <TextView
+        android:id="@+id/errorState"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"/>
+
     <ListView
         android:id="@+id/locations"
         android:layout_width="match_parent"
