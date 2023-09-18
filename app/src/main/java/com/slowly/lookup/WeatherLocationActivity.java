@@ -72,6 +72,35 @@ public class WeatherLocationActivity extends AppCompatActivity {
 
                     TextView description = findViewById(R.id.description);
                     description.setText(weather.getCurrent().getCondition().getText());
+
+                    // More detailed info at bottom
+                    TextView localTimeEight = findViewById(R.id.wheater_hour_eight);
+                    TextView localTimeTen = findViewById(R.id.wheater_hour_ten);
+                    TextView localTimeTwo = findViewById(R.id.wheater_hour_two);
+                    TextView localTimeFour = findViewById(R.id.wheater_hour_four);
+
+                    String[] timeEight = weather.getForecast().getForecastday().get(0).getHour().get(8).getTime().split(" ");
+                    String[] timeTen = weather.getForecast().getForecastday().get(0).getHour().get(10).getTime().split(" ");
+                    String[] timeTwo = weather.getForecast().getForecastday().get(0).getHour().get(14).getTime().split(" ");
+                    String[] timeFour = weather.getForecast().getForecastday().get(0).getHour().get(16).getTime().split(" ");
+
+                    localTimeEight.setText(timeEight[1]);
+                    localTimeTen.setText(timeTen[1]);
+                    localTimeTwo.setText(timeTwo[1]);
+                    localTimeFour.setText(timeFour[1]);
+
+                    // More detailed info at bottom temp
+                    TextView localTempEight = findViewById(R.id.wheater_temp_eight);
+                    TextView localTempTen = findViewById(R.id.wheater_temp_ten);
+                    TextView localTempTwo = findViewById(R.id.wheater_temp_two);
+                    TextView localTempFour = findViewById(R.id.wheater_temp_four);
+
+                    localTempEight.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(8).getTemp_c()));
+                    localTempTen.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(10).getTemp_c()));
+                    localTempTwo.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(14).getTemp_c()));
+                    localTempFour.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(16).getTemp_c()));
+
+
                 } catch (JSONException e) {
                     // TODO add handling for failed parsing
                 }
@@ -85,5 +114,9 @@ public class WeatherLocationActivity extends AppCompatActivity {
 
         WeatherService weatherService = new WeatherService();
         weatherService.getWeather(getApplicationContext(), locationName, serviceCallback);
+    }
+
+    private String formatTemp(Double temperature) {
+        return String.format(Locale.getDefault(),"%.0fº", temperature);
     }
 }
