@@ -51,12 +51,7 @@ public class MainActivity extends AppCompatActivity {
         locations.setAdapter(locationsAdapter);
 
         SharedPreferences preferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putStringSet("locations", new HashSet<>(Arrays.asList("Fiesch", "Brig", "Zermatt", "Engelberg", "Chur CH", "Fruttigen CH", "Chamonix")));
-        editor.apply();
-
         Set<String> savedLocations = preferences.getStringSet("locations", null);
-        System.out.println(savedLocations);
 
         if (savedLocations == null || savedLocations.isEmpty()) {
             emptyState.setText("no locations saved :(");
