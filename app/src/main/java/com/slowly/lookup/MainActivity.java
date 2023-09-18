@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putStringSet("locations", new HashSet<>(Arrays.asList("Fiesch", "Brig", "Zermatt", "Engelberg", "Chur", "Fruttigen", "Chamonix")));
+        editor.putStringSet("locations", new HashSet<>(Arrays.asList("Fiesch", "Brig", "Zermatt", "Engelberg", "Chur CH", "Fruttigen CH", "Chamonix")));
         editor.apply();
 
         Set<String> savedLocations = preferences.getStringSet("locations", null);
