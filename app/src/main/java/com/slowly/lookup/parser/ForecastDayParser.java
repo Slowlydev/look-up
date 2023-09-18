@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class ForecastDayParser {
     public static ForecastDay parseForecastDayFromJSONObject(JSONObject jsonObject) throws JSONException {
         ForecastDay forecastDay = new ForecastDay();
@@ -30,10 +32,10 @@ public class ForecastDayParser {
         // Parse 'hour' array using another parser (assuming ForecastDayHourInfoParser exists)
         if (jsonObject.has("hour")) {
             JSONArray hourArray = jsonObject.getJSONArray("hour");
-            ForecastDayHourInfo[] hourInfoArray = new ForecastDayHourInfo[hourArray.length()];
+            ArrayList<ForecastDayHourInfo> hourInfoArray = new ArrayList<>();
             for (int i = 0; i < hourArray.length(); i++) {
                 JSONObject hourObject = hourArray.getJSONObject(i);
-                hourInfoArray[i] = ForecastDayHourInfoParser.parseForecastDayHourInfoFromJSONObject(hourObject);
+                hourInfoArray.add(ForecastDayHourInfoParser.parseForecastDayHourInfoFromJSONObject(hourObject));
             }
             forecastDay.setHour(hourInfoArray);
         }

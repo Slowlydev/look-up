@@ -1,11 +1,22 @@
 package com.slowly.lookup.model;
 
+import java.util.ArrayList;
+
 public class ForecastDay {
     String date;
     long date_epoch;
     ForecastDayInfo day;
     ForecastDayAstroInfo astro;
-    ForecastDayHourInfo[] hour;
+
+    public ArrayList<ForecastDayHourInfo> getHour() {
+        return hour;
+    }
+
+    public void setHour(ArrayList<ForecastDayHourInfo> hour) {
+        this.hour = hour;
+    }
+
+    ArrayList<ForecastDayHourInfo> hour;
 
     public String getDate() {
         return date;
@@ -39,11 +50,4 @@ public class ForecastDay {
         this.astro = astro;
     }
 
-    public ForecastDayHourInfo[] getHour() {
-        return hour;
-    }
-
-    public void setHour(ForecastDayHourInfo[] hour) {
-        this.hour = hour;
-    }
 }
