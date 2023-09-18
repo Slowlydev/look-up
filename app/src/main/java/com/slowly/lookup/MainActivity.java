@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
+    @Override
+    protected void onResume() {
         ListView locations = findViewById(R.id.locations);
         TextView emptyState = findViewById(R.id.emptyState);
         TextView errorState = findViewById(R.id.errorState);
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         locations.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getApplicationContext(), WeatherLocationActivity.class);
-            LocationItem selected = (LocationItem)parent.getItemAtPosition(position);
+            LocationItem selected = (LocationItem) parent.getItemAtPosition(position);
             intent.putExtra("locationName", selected.getName());
             startActivity(intent);
         });
@@ -103,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             errorState.setVisibility(View.GONE);
         }
+
+        super.onResume();
     }
 
     @Override

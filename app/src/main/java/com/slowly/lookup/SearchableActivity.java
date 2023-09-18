@@ -88,8 +88,10 @@ public class SearchableActivity extends AppCompatActivity {
                         Set<String> savedLocations = preferences.getStringSet("locations", null);
                         Set<String> newLocations = new HashSet<>();
 
-                        for (String location : savedLocations) {
-                            newLocations.add(location);
+                        if (savedLocations != null) {
+                            for (String location : savedLocations) {
+                                newLocations.add(location);
+                            }
                         }
 
                         newLocations.add(selected.getName());
