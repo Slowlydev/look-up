@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.slowly.lookup.adapter.ListAdapter;
+import com.slowly.lookup.model.LocationItem;
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
 import com.slowly.lookup.services.Service;
@@ -18,7 +20,6 @@ import com.slowly.lookup.services.WeatherService;
 
 import org.json.JSONException;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -35,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         ListView locations = findViewById(R.id.locations);
         TextView emptyState = findViewById(R.id.emptyState);
-        List<String> locationItems = new ArrayList<>();
+        List<LocationItem> locationItems = new ArrayList<>();
 
-        ArrayAdapter<String> locationsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, locationItems);
+        ArrayAdapter<LocationItem> locationsAdapter = new ListAdapter(this, R.layout.activity_main_list_item, locationItems);
         locations.setAdapter(locationsAdapter);
 
         SharedPreferences preferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
@@ -54,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         AdapterView.OnItemClickListener onItemClick = (parent, view, position, id) -> {
             Intent intent = new Intent(getApplicationContext(), WeatherLocationActivity.class);
-            String selected = (String)parent.getItemAtPosition(position);
-            intent.putExtra("locationName", selected);
+            LocationItem selected = (LocationItem)parent.getItemAtPosition(position);
+            intent.putExtra("locationName", selected.getName());
             startActivity(intent);
         };
         locations.setOnItemClickListener(onItemClick);
@@ -69,21 +70,21 @@ public class MainActivity extends AppCompatActivity {
                             Weather weather = WeatherParser.parseWeatherFromString(response);
                             Double temperature = weather.getCurrent().getTemp_c();
                             String condition = weather.getCurrent().getCondition().getText();
-                            locationItems.add(MessageFormat.format("{0}, {1}, {2}", location, temperature, condition));
+                            locationItems.add(new LocationItem(location, temperature, condition));
                             locationsAdapter.notifyDataSetChanged();
                         } catch (JSONException err) {
-                            String error = MessageFormat.format( "failed to fetch weather for location {0}", location);
+                            String error = "failed to fetch weather :(";
                             System.err.println(error);
-                            locationItems.add(error);
+                            locationItems.add(new LocationItem(location, null, error));
                             locationsAdapter.notifyDataSetChanged();
                         }
                     }
 
                     @Override
                     public void onError() {
-                        String error = MessageFormat.format( "failed to fetch weather for location {0}", location);
+                        String error = "failed to fetch weather :(";
                         System.err.println(error);
-                        locationItems.add(error);
+                        locationItems.add(new LocationItem(location, null, error));
                         locationsAdapter.notifyDataSetChanged();
                     }
                 };
