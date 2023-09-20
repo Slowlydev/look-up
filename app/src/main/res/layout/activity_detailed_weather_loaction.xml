@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="40dp"
-        android:text="[Current Location]"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
         app:layout_constraintTop_toTopOf="@+id/view13" />
@@ -141,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="21dp"
-        android:text="[time-stamp]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
         app:layout_constraintTop_toBottomOf="@+id/location_detail" />
@@ -152,7 +152,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="12dp"
-        android:text="[degreece]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
         app:layout_constraintTop_toBottomOf="@+id/time_stamp_detail" />
@@ -163,7 +163,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="12dp"
-        android:text="[direction]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
         app:layout_constraintTop_toBottomOf="@+id/temprature_detail" />
@@ -174,7 +174,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="12dp"
-        android:text="[speed in kmh]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
         app:layout_constraintTop_toBottomOf="@+id/direction_detail" />
@@ -185,7 +185,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="21dp"
-        android:text="Local Time"
+        android:text="@string/local_time"
         android:textColor="#80000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
@@ -197,7 +197,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="12dp"
-        android:text="Feels like 50°"
+        android:text="@string/empty"
         android:textColor="#80000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
@@ -209,7 +209,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="12dp"
-        android:text="Wind Direction"
+        android:text="@string/wind_direction"
         android:textColor="#80000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
@@ -221,7 +221,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="12dp"
-        android:text="Wind Speed"
+        android:text="@string/wind_speed"
         android:textColor="#80000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/view13"
@@ -234,7 +234,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="22dp"
-        android:text="[time]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/temprature_eight_detail"
         app:layout_constraintStart_toStartOf="@+id/temprature_eight_detail"
@@ -247,7 +247,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="22dp"
-        android:text="[time]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintStart_toStartOf="@+id/view6"
@@ -258,7 +258,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="[time]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/view7"
         app:layout_constraintStart_toStartOf="@+id/view7"
@@ -269,7 +269,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="[time]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/view1"
         app:layout_constraintStart_toStartOf="@+id/view1"
@@ -280,7 +280,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="[time]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/view12"
         app:layout_constraintStart_toStartOf="@+id/view12"
@@ -291,7 +291,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="[time]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/view11"
         app:layout_constraintStart_toStartOf="@+id/view11"
@@ -302,7 +302,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="[time]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/view9"
         app:layout_constraintStart_toStartOf="@+id/view9"
@@ -313,7 +313,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="[time]"
+        android:text="@string/empty"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/view10"
         app:layout_constraintStart_toStartOf="@+id/view10"
@@ -324,7 +324,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="[30]°"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/temprature_eight_detail"
         app:layout_constraintStart_toStartOf="@+id/temprature_eight_detail"
@@ -335,7 +335,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="[30]°"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintStart_toStartOf="@+id/view6"
@@ -346,7 +346,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="[30]°"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/view7"
         app:layout_constraintStart_toStartOf="@+id/view7"
@@ -357,7 +357,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="[30]°"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/view1"
         app:layout_constraintStart_toStartOf="@+id/view1"
@@ -368,7 +368,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="[30]°"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/view9"
         app:layout_constraintStart_toStartOf="@+id/view9"
@@ -379,7 +379,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="[30]°"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/view10"
         app:layout_constraintStart_toStartOf="@+id/view10"
@@ -390,7 +390,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="[30]°"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/view11"
         app:layout_constraintStart_toStartOf="@+id/view11"
@@ -401,7 +401,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="[30]°"
+        android:text="@string/empty"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/view12"
         app:layout_constraintStart_toStartOf="@+id/view12"
@@ -415,7 +415,8 @@
         app:layout_constraintEnd_toEndOf="@+id/temprature_eight_detail"
         app:layout_constraintStart_toStartOf="@+id/temprature_eight_detail"
         app:layout_constraintTop_toTopOf="@+id/temprature_eight_detail"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/icon_desc" />
 
     <ImageView
         android:id="@+id/image_nine_detail"
@@ -425,7 +426,8 @@
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintStart_toStartOf="@+id/view6"
         app:layout_constraintTop_toTopOf="@+id/view6"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/icon_desc"/>
 
     <ImageView
         android:id="@+id/image_ten_detail"
@@ -435,7 +437,8 @@
         app:layout_constraintEnd_toEndOf="@+id/view7"
         app:layout_constraintStart_toStartOf="@+id/view7"
         app:layout_constraintTop_toTopOf="@+id/view7"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/icon_desc"/>
 
     <ImageView
         android:id="@+id/image_eleven_detail"
@@ -445,7 +448,8 @@
         app:layout_constraintEnd_toEndOf="@+id/view1"
         app:layout_constraintStart_toStartOf="@+id/view1"
         app:layout_constraintTop_toTopOf="@+id/view1"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/icon_desc"/>
 
     <ImageView
         android:id="@+id/image_one_detail"
@@ -455,7 +459,8 @@
         app:layout_constraintEnd_toEndOf="@+id/view9"
         app:layout_constraintStart_toStartOf="@+id/view9"
         app:layout_constraintTop_toTopOf="@+id/view9"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/icon_desc"/>
 
     <ImageView
         android:id="@+id/image_two_detail"
@@ -465,7 +470,8 @@
         app:layout_constraintEnd_toEndOf="@+id/view10"
         app:layout_constraintStart_toStartOf="@+id/view10"
         app:layout_constraintTop_toTopOf="@+id/view10"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/icon_desc"/>
 
     <ImageView
         android:id="@+id/image_three_detail"
@@ -475,7 +481,8 @@
         app:layout_constraintEnd_toEndOf="@+id/view11"
         app:layout_constraintStart_toStartOf="@+id/view11"
         app:layout_constraintTop_toTopOf="@+id/view11"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/icon_desc"/>
 
     <ImageView
         android:id="@+id/image_four_detail"
@@ -485,6 +492,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view12"
         app:layout_constraintStart_toStartOf="@+id/view12"
         app:layout_constraintTop_toTopOf="@+id/view12"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/icon_desc"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
