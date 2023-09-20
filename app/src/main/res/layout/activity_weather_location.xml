@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -45,9 +45,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/backgroundImage"
         app:layout_constraintTop_toBottomOf="@+id/temperature" />
 
     <View
@@ -69,7 +69,7 @@
         android:background="@drawable/rectangle_border"
         android:outlineSpotShadowColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/backgroundImage" />
 
     <View
         android:id="@+id/view2"
@@ -80,7 +80,7 @@
         android:background="@drawable/rectangle_border"
         android:outlineSpotShadowColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/view1"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/backgroundImage" />
 
     <View
         android:id="@+id/view3"
@@ -91,7 +91,7 @@
         android:background="@drawable/rectangle_border"
         android:outlineSpotShadowColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/view4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/backgroundImage" />
 
     <View
         android:id="@+id/view4"
@@ -102,7 +102,7 @@
         android:background="@drawable/rectangle_border"
         android:outlineSpotShadowColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/backgroundImage" />
 
     <Button
         android:id="@+id/show_more"

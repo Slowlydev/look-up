@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
+import com.slowly.lookup.services.BackgroundService;
 import com.slowly.lookup.services.ServiceCallback;
 import com.slowly.lookup.services.WeatherService;
 import com.squareup.picasso.Picasso;
@@ -51,6 +52,12 @@ public class WeatherLocationActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        loadWeather();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int itemId = item.getItemId();
 
@@ -68,6 +75,8 @@ public class WeatherLocationActivity extends AppCompatActivity {
             public void onRequest(String response) {
                 try {
                     Weather weather = WeatherParser.parseWeatherFromString(response);
+
+                    BackgroundService.setBackground(findViewById(R.id.backgroundImage), weather.getLocation());
 
                     TextView temperature = findViewById(R.id.temperature);
                     temperature.setText(String.format(Locale.getDefault(),"%.0fº", weather.getCurrent().getTemp_c()));

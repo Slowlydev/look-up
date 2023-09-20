@@ -3,6 +3,7 @@ package com.slowly.lookup;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.slowly.lookup.services.BackgroundService;
 import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
@@ -61,11 +62,9 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
             @Override
             public void onRequest(String response) {
                 try {
-                    System.out.println(response);
-
                     Weather weather = WeatherParser.parseWeatherFromString(response);
 
-                    System.out.println(weather);
+                    BackgroundService.setBackground(findViewById(R.id.backgroundImage), weather.getLocation());
 
                     TextView locationName = findViewById(R.id.location_detail);
                     TextView temperature = findViewById(R.id.temprature_detail);

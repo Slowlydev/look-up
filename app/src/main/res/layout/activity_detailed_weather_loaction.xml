@@ -2,11 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/temprature_ten_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/day_background"
     tools:context=".DetailedWeatherLocationActivity">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/background_alt"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sunrise_background" />
 
     <View
         android:id="@+id/view13"
