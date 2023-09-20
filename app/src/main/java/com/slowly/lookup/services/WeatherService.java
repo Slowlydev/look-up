@@ -10,7 +10,7 @@ import com.android.volley.toolbox.Volley;
 
 public class WeatherService {
 
-    String blockedkey = "3ba11f09c22b42a184d125133231109";
+    String blocked_key = "3ba11f09c22b42a184d125133231109";
     String key = "786876c11c65481aa84120549231509";
     String baseUrl = "https://api.weatherapi.com/v1/";
 

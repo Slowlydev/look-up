@@ -37,7 +37,7 @@ public class ListAdapter extends ArrayAdapter<LocationItem> {
         TextView locationName = convertView.findViewById(R.id.locationName);
         TextView locationDetails = convertView.findViewById(R.id.locationDetails);
         ImageView locationIcon = convertView.findViewById(R.id.hourIcon);
-        ImageView locationDelete = convertView.findViewById(R.id.loactionDelete);
+        ImageView locationDelete = convertView.findViewById(R.id.locationDelete);
 
         locationName.setText(item.getName());
         String temperature = item.getWeather() != null ? item.getWeather().getCurrent().getTemp_c() + ", " : "";
