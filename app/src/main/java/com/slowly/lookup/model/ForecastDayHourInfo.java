@@ -1,5 +1,12 @@
 package com.slowly.lookup.model;
 
+import com.slowly.lookup.adapter.HourItem;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.TimeZone;
+
 public class ForecastDayHourInfo {
     long time_epoch;
     String time;
@@ -297,5 +304,9 @@ public class ForecastDayHourInfo {
 
     public void setUv(double uv) {
         this.uv = uv;
+    }
+
+    public HourItem toHourItem() {
+        return new HourItem(condition.icon, this, time.split(" ")[1]);
     }
 }

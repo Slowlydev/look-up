@@ -2,24 +2,34 @@ package com.slowly.lookup;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.slowly.lookup.adapter.HourAdapter;
+import com.slowly.lookup.adapter.HourItem;
+import com.slowly.lookup.model.ForecastDayHourInfo;
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
 import com.slowly.lookup.services.BackgroundService;
 import com.slowly.lookup.services.ServiceCallback;
 import com.slowly.lookup.services.WeatherService;
+import com.slowly.lookup.util.TempFormat;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class WeatherLocationActivity extends AppCompatActivity {
 
@@ -36,7 +46,7 @@ public class WeatherLocationActivity extends AppCompatActivity {
 
         // TODO add handling for missing location
 
-        loadWeather();
+//        loadWeather();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -79,54 +89,27 @@ public class WeatherLocationActivity extends AppCompatActivity {
                     BackgroundService.setBackground(findViewById(R.id.backgroundImage), weather.getLocation());
 
                     TextView temperature = findViewById(R.id.temperature);
-                    temperature.setText(String.format(Locale.getDefault(),"%.0fº", weather.getCurrent().getTemp_c()));
+                    temperature.setText(TempFormat.format(weather.getCurrent().getTemp_c()));
 
                     TextView description = findViewById(R.id.description);
                     description.setText(weather.getCurrent().getCondition().getText());
 
-                    // More detailed info at bottom
-                    TextView localTimeEight = findViewById(R.id.wheater_hour_eight);
-                    TextView localTimeTen = findViewById(R.id.wheater_hour_ten);
-                    TextView localTimeTwo = findViewById(R.id.wheater_hour_two);
-                    TextView localTimeFour = findViewById(R.id.wheater_hour_four);
 
-                    String[] timeEight = weather.getForecast().getForecastday().get(0).getHour().get(8).getTime().split(" ");
-                    String[] timeTen = weather.getForecast().getForecastday().get(0).getHour().get(10).getTime().split(" ");
-                    String[] timeTwo = weather.getForecast().getForecastday().get(0).getHour().get(14).getTime().split(" ");
-                    String[] timeFour = weather.getForecast().getForecastday().get(0).getHour().get(16).getTime().split(" ");
+                    List<HourItem> hours = weather.getForecast().getForecastday().get(0).getHour().stream().map(ForecastDayHourInfo::toHourItem).collect(Collectors.toList());
 
-                    localTimeEight.setText(timeEight[1]);
-                    localTimeTen.setText(timeTen[1]);
-                    localTimeTwo.setText(timeTwo[1]);
-                    localTimeFour.setText(timeFour[1]);
+                    // This is the biggest Joke, this adapter for the RecycleView doesn't update on array changes, you need to pass the final array.
+                    // And all this time they teach you the other adapters that do react...
+                    HourAdapter adapter = new HourAdapter(hours);
 
-                    // More detailed info at bottom temp
-                    TextView localTempEight = findViewById(R.id.wheater_temp_eight);
-                    TextView localTempTen = findViewById(R.id.wheater_temp_ten);
-                    TextView localTempTwo = findViewById(R.id.wheater_temp_two);
-                    TextView localTempFour = findViewById(R.id.wheater_temp_four);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
 
-                    localTempEight.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(8).getTemp_c()));
-                    localTempTen.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(10).getTemp_c()));
-                    localTempTwo.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(14).getTemp_c()));
-                    localTempFour.setText(formatTemp(weather.getForecast().getForecastday().get(0).getHour().get(16).getTemp_c()));
+                    RecyclerView hoursRecyclerView = findViewById(R.id.hoursRecycler);
+                    hoursRecyclerView.setLayoutManager(layoutManager);
+                    hoursRecyclerView.setAdapter(adapter);
 
-                    ImageView localIconEight = findViewById(R.id.wheater_icon_eight);
-                    ImageView localIconTen = findViewById(R.id.wheater_icon_ten);
-                    ImageView localIconTwo = findViewById(R.id.wheater_icon_two);
-                    ImageView localIconFour = findViewById(R.id.wheater_icon_four);
-
-                    String iconUrlEight = weather.getForecast().getForecastday().get(0).getHour().get(8).getCondition().getIcon();
-                    String iconUrlTen = weather.getForecast().getForecastday().get(0).getHour().get(10).getCondition().getIcon();
-                    String iconUrlTwo = weather.getForecast().getForecastday().get(0).getHour().get(14).getCondition().getIcon();
-                    String iconUrlFour = weather.getForecast().getForecastday().get(0).getHour().get(16).getCondition().getIcon();
-
-                    Picasso.get().load("https:" + iconUrlEight).into(localIconEight);
-                    Picasso.get().load("https:" + iconUrlTen).into(localIconTen);
-                    Picasso.get().load("https:" + iconUrlTwo).into(localIconTwo);
-                    Picasso.get().load("https:" + iconUrlFour).into(localIconFour);
                 } catch (JSONException e) {
                     // TODO add handling for failed parsing
+                    System.out.println("JSON parse error");
                 }
             }
 
@@ -138,9 +121,5 @@ public class WeatherLocationActivity extends AppCompatActivity {
 
         WeatherService weatherService = new WeatherService();
         weatherService.getWeather(getApplicationContext(), locationName, serviceCallback);
-    }
-
-    private String formatTemp(Double temperature) {
-        return String.format(Locale.getDefault(),"%.0fº", temperature);
     }
 }

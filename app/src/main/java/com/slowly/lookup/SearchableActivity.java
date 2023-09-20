@@ -12,9 +12,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.slowly.lookup.adapter.ListAdapter;
 import com.slowly.lookup.adapter.SearchAdapter;
-import com.slowly.lookup.model.LocationItem;
 import com.slowly.lookup.model.SearchLocation;
 import com.slowly.lookup.parser.SearchLocationParser;
 import com.slowly.lookup.services.ServiceCallback;
@@ -23,7 +21,6 @@ import com.slowly.lookup.services.WeatherService;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 

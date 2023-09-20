@@ -1,4 +1,6 @@
-package com.slowly.lookup.model;
+package com.slowly.lookup.adapter;
+
+import com.slowly.lookup.model.Weather;
 
 public class LocationItem {
     private String name;

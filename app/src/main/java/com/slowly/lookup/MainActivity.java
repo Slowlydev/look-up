@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -17,7 +16,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.slowly.lookup.adapter.ListAdapter;
-import com.slowly.lookup.model.LocationItem;
+import com.slowly.lookup.adapter.LocationItem;
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
 import com.slowly.lookup.services.NetworkUtils;

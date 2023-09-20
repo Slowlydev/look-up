@@ -1,7 +1,6 @@
 package com.slowly.lookup.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.slowly.lookup.DetailedWeatherLocationActivity;
 import com.slowly.lookup.R;
-import com.slowly.lookup.model.LocationItem;
 import com.squareup.picasso.Picasso;
 
 import java.text.MessageFormat;
@@ -39,7 +36,7 @@ public class ListAdapter extends ArrayAdapter<LocationItem> {
 
         TextView locationName = convertView.findViewById(R.id.locationName);
         TextView locationDetails = convertView.findViewById(R.id.locationDetails);
-        ImageView locationIcon = convertView.findViewById(R.id.locationIcon);
+        ImageView locationIcon = convertView.findViewById(R.id.hourIcon);
         ImageView locationDelete = convertView.findViewById(R.id.loactionDelete);
 
         locationName.setText(item.getName());
