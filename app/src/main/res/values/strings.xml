@@ -5,4 +5,6 @@
     <string name="background_alt">background</string>
     <string name="search_hint">Search for Loaction</string>
     <string name="search">Search</string>
+    <string name="no_locations">no loactions saved :(</string>
+    <string name="no_network">No network connection :(</string>
 </resources>

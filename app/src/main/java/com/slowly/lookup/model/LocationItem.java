@@ -2,13 +2,23 @@ package com.slowly.lookup.model;
 
 public class LocationItem {
     private String name;
-    private Double temperature;
-    private String condition;
 
-    public LocationItem(String name, Double temperature, String condition) {
+    private Weather weather;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
+
+    public LocationItem(String name, Weather weather, String description) {
         this.name = name;
-        this.temperature = temperature;
-        this.condition = condition;
+        this.weather = weather;
+        this.description = description;
     }
 
     public String getName() {
@@ -19,19 +29,11 @@ public class LocationItem {
         this.name = name;
     }
 
-    public Double getTemperature() {
-        return temperature;
+    public Weather getWeather() {
+        return weather;
     }
 
-    public void setTemperature(Double temperature) {
-        this.temperature = temperature;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setWeather(Weather weather) {
+        this.weather = weather;
     }
 }

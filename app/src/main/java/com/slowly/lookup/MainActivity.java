@@ -1,6 +1,5 @@
 package com.slowly.lookup;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.SearchManager;
@@ -8,11 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -35,14 +33,29 @@ import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences prefs = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        prefs.registerOnSharedPreferenceChangeListener(listener);
     }
 
     @Override
     protected void onResume() {
+        super.onResume();
+        loadLocationWeather();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences prefs = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        prefs.unregisterOnSharedPreferenceChangeListener(listener);
+    }
+
+    private void loadLocationWeather() {
         ListView locations = findViewById(R.id.locations);
         TextView emptyState = findViewById(R.id.emptyState);
         TextView errorState = findViewById(R.id.errorState);
@@ -55,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         Set<String> savedLocations = preferences.getStringSet("locations", null);
 
         if (savedLocations == null || savedLocations.isEmpty()) {
-            emptyState.setText("no locations saved :(");
+            emptyState.setText(R.string.no_locations);
         } else {
             emptyState.setVisibility(View.GONE);
         }
@@ -74,9 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onRequest(String response) {
                         try {
                             Weather weather = WeatherParser.parseWeatherFromString(response);
-                            Double temperature = weather.getCurrent().getTemp_c();
-                            String condition = weather.getCurrent().getCondition().getText();
-                            locationItems.add(new LocationItem(location, temperature, condition));
+                            locationItems.add(new LocationItem(location, weather, weather.getCurrent().getCondition().getText()));
                             locationsAdapter.notifyDataSetChanged();
                         } catch (JSONException err) {
                             String error = "failed to fetch weather :(";
@@ -100,12 +111,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (!NetworkUtils.connected(this)) {
-            errorState.setText("no network connection :(");
+            errorState.setText(R.string.no_network);
         } else {
             errorState.setVisibility(View.GONE);
         }
-
-        super.onResume();
     }
 
     @Override
@@ -119,4 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+    private SharedPreferences.OnSharedPreferenceChangeListener listener =
+            (prefs, key) -> {
+                if (key.equals("locations")) {
+                    loadLocationWeather();
+                }
+            };
+
 }
