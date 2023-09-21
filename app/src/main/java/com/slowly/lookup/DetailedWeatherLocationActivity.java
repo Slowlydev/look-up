@@ -96,7 +96,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
                     List<DayItem> days = weather.getForecast().getForecastday().stream().map(ForecastDay::toDayItem).collect(Collectors.toList());
 
                     DayAdapter adapter = new DayAdapter(days);
-                    StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
+                    StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
                     RecyclerView daysRecycleView = findViewById(R.id.dayRecycler);
                     daysRecycleView.setLayoutManager(layoutManager);
                     daysRecycleView.setAdapter(adapter);
