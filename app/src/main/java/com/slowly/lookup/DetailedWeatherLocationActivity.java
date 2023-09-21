@@ -20,6 +20,7 @@ import com.slowly.lookup.services.WeatherService;
 
 import org.json.JSONException;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 import javax.security.auth.callback.Callback;
@@ -27,7 +28,7 @@ import javax.security.auth.callback.Callback;
 public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
     private String locationName;
-
+    private static final DecimalFormat df = new DecimalFormat("0.0");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
                     BackgroundService.setBackground(findViewById(R.id.backgroundImage), weather.getLocation());
 
                     TextView locationName = findViewById(R.id.location_detail);
+                    TextView feelsLike = findViewById(R.id.feels_like_detail);
                     TextView temperature = findViewById(R.id.temprature_detail);
                     TextView localTime = findViewById(R.id.time_stamp_detail);
                     TextView windDirection = findViewById(R.id.direction_detail);
@@ -76,9 +78,10 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
                     locationName.setText(weather.getLocation().getName());
                     localTime.setText(time[1]);
+                    feelsLike.setText("Feels Like " + String.format(Locale.getDefault(),"%.0fº", weather.getCurrent().getFeelslike_c()));
                     temperature.setText(formatTemp(weather.getCurrent().getTemp_c()));
                     windDirection.setText(weather.getCurrent().getWind_dir());
-                    windSpeed.setText(String.format(Locale.getDefault(),"%f", weather.getCurrent().getWind_kph()));
+                    windSpeed.setText(df.format(weather.getCurrent().getWind_kph()));
 
                     //Hourly Image
                     ImageView weatherConditionEight = findViewById(R.id.image_eight_detail);
