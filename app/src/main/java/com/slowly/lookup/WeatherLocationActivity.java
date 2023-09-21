@@ -94,7 +94,7 @@ public class WeatherLocationActivity extends AppCompatActivity {
                     TextView description = findViewById(R.id.description);
                     description.setText(weather.getCurrent().getCondition().getText());
 
-
+                    // Get and Set all hours from API
                     List<HourItem> hours = weather.getForecast().getForecastday().get(0).getHour().stream().map(ForecastDayHourInfo::toHourItem).collect(Collectors.toList());
 
                     // This is the biggest Joke, this adapter for the RecycleView doesn't update on array changes, you need to pass the final array.

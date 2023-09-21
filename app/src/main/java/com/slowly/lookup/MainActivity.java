@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         locations.setAdapter(locationsAdapter);
 
         SharedPreferences preferences = getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        // Get Locations from local Storage
         Set<String> savedLocations = preferences.getStringSet("locations", null);
 
         if (savedLocations == null || savedLocations.isEmpty()) {
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             emptyState.setVisibility(View.GONE);
         }
 
+        // Onclick route to WeatherLocationActivity and give the current location with as param
         locations.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getApplicationContext(), WeatherLocationActivity.class);
             LocationItem selected = (LocationItem) parent.getItemAtPosition(position);

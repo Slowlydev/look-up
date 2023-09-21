@@ -14,6 +14,7 @@ public class WeatherService {
     String key = "786876c11c65481aa84120549231509";
     String baseUrl = "https://api.weatherapi.com/v1/";
 
+    // API Requests to above baseURL
     public void getWeather(Context context, String query, ServiceCallback serviceCallback) {
         RequestQueue queue = Volley.newRequestQueue(context);
 

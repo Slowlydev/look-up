@@ -73,6 +73,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
                     BackgroundService.setBackground(findViewById(R.id.backgroundImage), weather.getLocation());
 
+                    // Find element in xml View
                     TextView locationName = findViewById(R.id.location_detail);
                     TextView feelsLike = findViewById(R.id.feels_like_detail);
                     TextView temperature = findViewById(R.id.temperature_detail);
@@ -82,6 +83,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
                     String[] time = weather.getLocation().getLocaltime().split(" ");
 
+                    // Set Text to found xml Views
                     locationName.setText(weather.getLocation().getName());
                     localTime.setText(time[1]);
                     feelsLike.setText("Feels Like " + String.format(Locale.getDefault(),"%.0fº", weather.getCurrent().getFeelslike_c()));
@@ -112,6 +114,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
         weatherService.getForecastWithDays(getApplicationContext(), locationName, serviceCallback);
     }
 
+    // To format degree | (int) + °
     private String formatTemp(Double temperature) {
         return String.format(Locale.getDefault(),"%.0fº", temperature);
     }

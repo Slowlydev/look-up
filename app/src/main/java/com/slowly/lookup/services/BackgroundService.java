@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+// This class is for dynamic background loading
 public class BackgroundService {
     public static void setBackground(ImageView backgroundImage, Location location) {
 
