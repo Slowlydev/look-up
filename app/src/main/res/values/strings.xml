@@ -11,4 +11,5 @@
     <string name="wind_direction">Wind Direction</string>
     <string name="wind_speed">Wind Speed</string>
     <string name="icon_desc">icon</string>
+    <string name="uv">UV Level</string>
 </resources>

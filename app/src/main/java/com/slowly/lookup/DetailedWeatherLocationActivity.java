@@ -80,6 +80,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
                     TextView localTime = findViewById(R.id.time_stamp_detail);
                     TextView windDirection = findViewById(R.id.direction_detail);
                     TextView windSpeed = findViewById(R.id.speed_detail);
+                    TextView uvLevel = findViewById(R.id.uv_detail);
 
                     String[] time = weather.getLocation().getLocaltime().split(" ");
 
@@ -90,6 +91,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
                     temperature.setText(formatTemp(weather.getCurrent().getTemp_c()));
                     windDirection.setText(weather.getCurrent().getWind_dir());
                     windSpeed.setText(df.format(weather.getCurrent().getWind_kph()));
+                    uvLevel.setText(String.format("%.0f", weather.getCurrent().getUv()));
 
                     List<DayItem> days = weather.getForecast().getForecastday().stream().map(ForecastDay::toDayItem).collect(Collectors.toList());
 
