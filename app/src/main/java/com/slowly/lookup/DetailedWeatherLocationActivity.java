@@ -13,7 +13,6 @@ import com.slowly.lookup.services.BackgroundService;
 import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -31,8 +30,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
-
-import javax.security.auth.callback.Callback;
 
 public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
@@ -78,7 +75,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
 
                     TextView locationName = findViewById(R.id.location_detail);
                     TextView feelsLike = findViewById(R.id.feels_like_detail);
-                    TextView temperature = findViewById(R.id.temprature_detail);
+                    TextView temperature = findViewById(R.id.temperature_detail);
                     TextView localTime = findViewById(R.id.time_stamp_detail);
                     TextView windDirection = findViewById(R.id.direction_detail);
                     TextView windSpeed = findViewById(R.id.speed_detail);
