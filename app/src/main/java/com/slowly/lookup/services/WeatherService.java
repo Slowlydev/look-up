@@ -34,13 +34,33 @@ public class WeatherService {
         queue.add(request);
     }
 
-    public void getLocation(Context context, String query, ServiceCallback  serviceCallback) {
+    public void getLocation(Context context, String query, ServiceCallback serviceCallback) {
         RequestQueue queue = Volley.newRequestQueue(context);
 
         String url = Uri.parse(baseUrl + "search.json")
                 .buildUpon()
                 .appendQueryParameter("q", query)
                 .appendQueryParameter("key", key)
+                .build().toString();
+
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                url,
+                serviceCallback::onRequest,
+                error -> serviceCallback.onError()
+        );
+
+        queue.add(request);
+    }
+
+    public void getForecastWithDays(Context context, String query, ServiceCallback serviceCallback) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        String url = Uri.parse(baseUrl + "forecast.json")
+                .buildUpon()
+                .appendQueryParameter("q", query)
+                .appendQueryParameter("key", key)
+                .appendQueryParameter("days", "10")
                 .build().toString();
 
         StringRequest request = new StringRequest(
