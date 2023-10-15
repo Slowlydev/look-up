@@ -20,7 +20,6 @@ import com.slowly.lookup.adapter.LocationItem;
 import com.slowly.lookup.model.Weather;
 import com.slowly.lookup.parser.WeatherParser;
 import com.slowly.lookup.services.NetworkUtils;
-import com.slowly.lookup.services.Service;
 import com.slowly.lookup.services.ServiceCallback;
 import com.slowly.lookup.services.WeatherService;
 

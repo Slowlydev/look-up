@@ -2,7 +2,6 @@ package com.slowly.lookup;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -10,13 +9,10 @@ import com.slowly.lookup.adapter.DayAdapter;
 import com.slowly.lookup.adapter.DayItem;
 import com.slowly.lookup.model.ForecastDay;
 import com.slowly.lookup.services.BackgroundService;
-import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.slowly.lookup.model.Weather;
@@ -76,7 +72,7 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
                     // Find element in xml View
                     TextView locationName = findViewById(R.id.location_detail);
                     TextView feelsLike = findViewById(R.id.feels_like_detail);
-                    TextView temperature = findViewById(R.id.temperature_detail);
+                    TextView temperature = findViewById(R.id.temprature_detail);
                     TextView localTime = findViewById(R.id.time_stamp_detail);
                     TextView windDirection = findViewById(R.id.direction_detail);
                     TextView windSpeed = findViewById(R.id.speed_detail);
@@ -116,7 +112,6 @@ public class DetailedWeatherLocationActivity extends AppCompatActivity {
         weatherService.getForecastWithDays(getApplicationContext(), locationName, serviceCallback);
     }
 
-    // To format degree | (int) + °
     private String formatTemp(Double temperature) {
         return String.format(Locale.getDefault(),"%.0fº", temperature);
     }
